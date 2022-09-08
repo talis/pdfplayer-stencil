@@ -6,6 +6,7 @@ import { Component, h, Prop, State } from '@stencil/core';
   shadow: true,
 })
 export class TalisPdfViewer {
+  @Prop() resourceTitle: string;
   @Prop() depotUrl: string;
   @Prop() token: string;
   @Prop() pageCount: number;
@@ -31,11 +32,12 @@ export class TalisPdfViewer {
   render() {
     return (
       <div>
-        <p>Depot URL: {this.depotUrl}</p>
-        <p>Token: {this.token}</p>
-        {this.documentImages.map((image: string) => (
-          <img src={image} />
-        ))}
+        <div class="page-title">{this.resourceTitle}</div>
+        <div class="page-content">
+          {this.documentImages.map((image: string) => (
+            <img src={image} />
+          ))}
+        </div>
       </div>
     );
   }

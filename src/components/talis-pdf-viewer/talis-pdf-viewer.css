@@ -1,3 +1,19 @@
-:host {
-  display: block;
+.page-title {
+  width: 100%;
+  height: 100px;
+  background-color: #017d87;
+  color: white;
+  font-family: 'Open Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-size: 2em;
+  padding: 0.25em;
+  text-align: center;
+}
+
+.page-content {
+  width: 100%;
+}
+
+.page-content img {
+  max-width: 100%;
+  height: auto;
 }
