@@ -1,19 +1,51 @@
-.page-title {
-  width: 100%;
-  height: 100px;
-  background-color: #017d87;
-  color: white;
-  font-family: 'Open Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  font-size: 2em;
-  padding: 0.25em;
-  text-align: center;
-}
-
 .page-content {
+  display: block
   width: 100%;
 }
 
 .page-content img {
   max-width: 100%;
   height: auto;
+}
+
+.page-navigation {
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  border-top: solid 1px black;
+  background-color: #017d87;
+  height: 50px;
+  width: 100%;
+}
+
+.page-navigation button {
+  font-weight: 400;
+  line-height: 1.333;
+  color: #017d87;
+  background-color: white;
+  border-color: #017d87;
+  font-size: 1.09rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0;
+}
+
+.pin-drop-holder {
+  position: absolute;
+}
+
+.pin-drop {
+  border: #fff 1.5px solid;
+  border-top-left-radius: 60%;
+  border-top-right-radius: 40% 70%;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 70% 40%;
+  bottom: 0px;
+  height: 22px;
+  left: -50%;
+  position: relative;
+  transform: rotate(45deg);
+  transition: transform 0.25s ease-in-out;
+  transform-origin: 100% 100%;
+  width: 22px;
+  background: linear-gradient(270deg, #6339aa 50%, #6339aa 50%);
 }

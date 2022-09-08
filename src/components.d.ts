@@ -10,7 +10,6 @@ export namespace Components {
         "annotations": string[];
         "depotUrl": string;
         "pageCount": number;
-        "resourceTitle": string;
         "token": string;
     }
 }
@@ -30,7 +29,6 @@ declare namespace LocalJSX {
         "annotations"?: string[];
         "depotUrl"?: string;
         "pageCount"?: number;
-        "resourceTitle"?: string;
         "token"?: string;
     }
     interface IntrinsicElements {
