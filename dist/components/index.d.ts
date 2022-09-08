@@ -1,5 +1,5 @@
 /* PdfplayerStencil custom elements */
-export { MyComponent as MyComponent } from '../types/components/my-component/my-component';
+export { TalisPdfViewer as TalisPdfViewer } from '../types/components/talis-pdf-viewer/talis-pdf-viewer';
 
 /**
  * Used to manually set the base path where assets can be found.
