@@ -1,5 +1,5 @@
 .page-content {
-  display: block
+  display: block;
   width: 100%;
 }
 
@@ -9,6 +9,7 @@
 }
 
 .page-navigation {
+  text-align: center;
   display: block;
   position: fixed;
   bottom: 0px;
@@ -27,6 +28,8 @@
   font-size: 1.09rem;
   border-radius: 0.3125rem;
   box-shadow: 0;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .pin-drop-holder {
