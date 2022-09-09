@@ -1,4 +1,4 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Element } from '@stencil/core';
 
 @Component({
   tag: 'talis-pdf-viewer',
@@ -9,13 +9,16 @@ export class TalisPdfViewer {
   @Prop() depotUrl: string;
   @Prop() token: string;
   @Prop() pageCount: number;
-  @Prop() annotations: string[] = [];
-  @State() documentImages: string[] = [];
+  @Prop() annotations: string;
   @State() hasLoaded = false;
+  @State() showPinDrop = false;
   @State() top: string;
   @State() left: string;
-  @State() showPinDrop = false;
   @State() currentPage: number = 0;
+  @Element() el: HTMLElement;
+
+  documentImages: string[] = [];
+  @State() annotationsArray: any[] = [];
 
   async connectedCallback() {
     this.documentImages = [];
@@ -35,28 +38,55 @@ export class TalisPdfViewer {
   nextPage() {
     if (this.currentPage + 1 !== this.pageCount) {
       this.currentPage++;
+      this.showPinDrop = false;
+      this.getCurrentAnnotation();
     }
   }
 
   prevPage() {
     if (this.currentPage !== 0) {
       this.currentPage--;
+      this.showPinDrop = false;
+      this.getCurrentAnnotation();
     }
   }
 
+  getCurrentAnnotation() {
+    const annotationsArray = JSON.parse(this.annotations);
+    this.annotationsArray = annotationsArray.filter(annotation => {
+      return parseInt(annotation.hasTarget[2].uri.slice(-1)) === this.currentPage;
+    });
+  }
+
+  getImageDimensions() {
+    const img = this.el.shadowRoot.querySelector('img');
+    const { offsetLeft: x, offsetTop: y, width, height } = img;
+    return { x, y, width, height };
+  }
+
+  getLocationDetails(annotation) {
+    const locationDetails = annotation.hasTarget[1].fragment.split('percentage=')[1];
+    const [locX, locY] = locationDetails.split(',');
+    const { x, y, width, height } = this.getImageDimensions();
+    const top = y + (parseInt(locY) / 100) * height;
+    const left = x + (parseInt(locX) / 100) * width;
+
+    return { top: top + 'px', left: left + 'px' };
+  }
+
   clickedDocument(event: MouseEvent) {
-    this.showPinDrop = true;
     console.log(`Page clicked: ${this.currentPage + 1}`);
     console.log(`Location clicked - x: ${event.offsetX}; y: ${event.offsetY}`);
     this.top = `${event.offsetY}px`;
     this.left = `${event.offsetX}px`;
+    this.showPinDrop = true;
   }
 
   render() {
     return (
       <div>
         <div class="page-content">
-          <img src={this.documentImages[this.currentPage]} onClick={ev => this.clickedDocument(ev)} />
+          <img src={this.documentImages[this.currentPage]} onClick={ev => this.clickedDocument(ev)} onLoad={() => this.getCurrentAnnotation()} />
         </div>
         <div class="page-navigation">
           <button onClick={() => this.prevPage()}>Previous</button>
@@ -68,6 +98,15 @@ export class TalisPdfViewer {
             <div class="pin-drop"></div>
           </div>
         )}
+        {this.annotationsArray.length > 0 &&
+          this.annotationsArray.map(annotation => {
+            const { top, left } = this.getLocationDetails(annotation);
+            return (
+              <div class="pin-drop-holder" style={{ top, left }}>
+                <div class="pin-drop"></div>
+              </div>
+            );
+          })}
       </div>
     );
   }

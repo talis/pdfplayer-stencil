@@ -1,4 +1,4 @@
-import { B as BUILD, c as consoleDevInfo, p as plt, w as win, H, d as doc, N as NAMESPACE, a as promiseResolve, b as bootstrapLazy } from './index-610ff24e.js';
+import { B as BUILD, c as consoleDevInfo, p as plt, w as win, H, d as doc, N as NAMESPACE, a as promiseResolve, b as bootstrapLazy } from './index-266b365c.js';
 import { g as globalScripts } from './app-globals-0f993ce5.js';
 
 /*
@@ -125,5 +125,5 @@ const patchCloneNodeFix = (HTMLElementPrototype) => {
 
 patchBrowser().then(options => {
   globalScripts();
-  return bootstrapLazy([["talis-pdf-viewer",[[1,"talis-pdf-viewer",{"depotUrl":[1,"depot-url"],"token":[1],"pageCount":[2,"page-count"],"annotations":[16],"documentImages":[32],"hasLoaded":[32],"top":[32],"left":[32],"showPinDrop":[32],"currentPage":[32]}]]]], options);
+  return bootstrapLazy([["talis-pdf-viewer",[[1,"talis-pdf-viewer",{"depotUrl":[1,"depot-url"],"token":[1],"pageCount":[2,"page-count"],"annotations":[1],"hasLoaded":[32],"showPinDrop":[32],"top":[32],"left":[32],"currentPage":[32],"annotationsArray":[32]}]]]], options);
 });
