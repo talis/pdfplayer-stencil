@@ -87,26 +87,26 @@ export class TalisPdfViewer {
       <div>
         <div class="page-content">
           <img src={this.documentImages[this.currentPage]} onClick={ev => this.clickedDocument(ev)} onLoad={() => this.getCurrentAnnotation()} />
+          {this.annotationsArray.length > 0 &&
+            this.annotationsArray.map(annotation => {
+              const { top, left } = this.getLocationDetails(annotation);
+              return (
+                <div class="pin-drop-holder" style={{ top, left }}>
+                  <div class="pin-drop"></div>
+                </div>
+              );
+            })}
+          {this.showPinDrop && (
+            <div class="pin-drop-holder" style={{ top: this.top, left: this.left }}>
+              <div class="pin-drop"></div>
+            </div>
+          )}
         </div>
         <div class="page-navigation">
           <button onClick={() => this.prevPage()}>Previous</button>
           <button>Page {this.currentPage + 1}</button>
           <button onClick={() => this.nextPage()}>Next</button>
         </div>
-        {this.showPinDrop && (
-          <div class="pin-drop-holder" style={{ top: this.top, left: this.left }}>
-            <div class="pin-drop"></div>
-          </div>
-        )}
-        {this.annotationsArray.length > 0 &&
-          this.annotationsArray.map(annotation => {
-            const { top, left } = this.getLocationDetails(annotation);
-            return (
-              <div class="pin-drop-holder" style={{ top, left }}>
-                <div class="pin-drop"></div>
-              </div>
-            );
-          })}
       </div>
     );
   }

@@ -1,6 +1,10 @@
 .page-content {
-  display: block;
-  width: 100%;
+  position: absolute;
+  top: 0px;
+  bottom: 50px;
+  left: 0px;
+  right: 0px;
+  overflow: auto;
 }
 
 .page-content img {
@@ -11,12 +15,16 @@
 .page-navigation {
   text-align: center;
   display: block;
-  position: fixed;
   bottom: 0px;
   border-top: solid 1px black;
   background-color: #017d87;
+
+  position: absolute;
+  bottom: 0px;
   height: 50px;
-  width: 100%;
+  left: 0px;
+  right: 0px;
+  overflow: hidden;
 }
 
 .page-navigation button {
