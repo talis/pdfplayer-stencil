@@ -10,11 +10,11 @@ export class TalisPdfViewer {
   @Prop() token: string;
   @Prop() pageCount: number;
   @Prop() annotations: string;
+  @Prop() currentPage: number;
   @State() hasLoaded = false;
   @State() showPinDrop = false;
   @State() top: string;
   @State() left: string;
-  @State() currentPage: number = 0;
   @Element() el: HTMLElement;
 
   documentImages: string[] = [];
@@ -104,7 +104,7 @@ export class TalisPdfViewer {
         </div>
         <div class="page-navigation">
           <button onClick={() => this.prevPage()}>Previous</button>
-          <button>Page {this.currentPage + 1}</button>
+          <button class="page-location">Page {this.currentPage + 1}</button>
           <button onClick={() => this.nextPage()}>Next</button>
         </div>
       </div>

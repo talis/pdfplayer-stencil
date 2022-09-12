@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface TalisPdfViewer {
         "annotations": string;
+        "currentPage": number;
         "depotUrl": string;
         "pageCount": number;
         "token": string;
@@ -27,6 +28,7 @@ declare global {
 declare namespace LocalJSX {
     interface TalisPdfViewer {
         "annotations"?: string;
+        "currentPage"?: number;
         "depotUrl"?: string;
         "pageCount"?: number;
         "token"?: string;

@@ -12,13 +12,27 @@
   height: auto;
 }
 
+button {
+  font-weight: 400;
+  line-height: 1.333;
+  color: white;
+  background-color: #017d87;
+  border: 1px solid #017d87;
+  font-size: 1.09rem;
+  border-radius: 0.3125rem;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  padding: 5px 7px;
+  cursor: pointer;
+}
+
 .page-navigation {
   text-align: center;
   display: block;
   bottom: 0px;
-  border-top: solid 1px black;
-  background-color: #017d87;
-
+  border-top: solid 1px #017d87;
+  background-color: white;
   position: absolute;
   bottom: 0px;
   height: 50px;
@@ -27,17 +41,10 @@
   overflow: hidden;
 }
 
-.page-navigation button {
-  font-weight: 400;
-  line-height: 1.333;
+.page-location {
   color: #017d87;
   background-color: white;
-  border-color: #017d87;
-  font-size: 1.09rem;
-  border-radius: 0.3125rem;
-  box-shadow: 0;
-  margin-left: 10px;
-  margin-right: 10px;
+  cursor: default;
 }
 
 .pin-drop-holder {
