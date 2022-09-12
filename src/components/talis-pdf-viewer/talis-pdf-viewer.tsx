@@ -3,7 +3,7 @@ import { Component, h, Prop, State, Element } from '@stencil/core';
 @Component({
   tag: 'talis-pdf-viewer',
   styleUrl: 'talis-pdf-viewer.css',
-  shadow: true,
+  shadow: false,
 })
 export class TalisPdfViewer {
   @Prop() depotUrl: string;
@@ -35,22 +35,6 @@ export class TalisPdfViewer {
     this.hasLoaded = true;
   }
 
-  nextPage() {
-    if (this.currentPage + 1 !== this.pageCount) {
-      this.currentPage++;
-      this.showPinDrop = false;
-      this.getCurrentAnnotation();
-    }
-  }
-
-  prevPage() {
-    if (this.currentPage !== 0) {
-      this.currentPage--;
-      this.showPinDrop = false;
-      this.getCurrentAnnotation();
-    }
-  }
-
   getCurrentAnnotation() {
     const annotationsArray = JSON.parse(this.annotations);
     this.annotationsArray = annotationsArray.filter(annotation => {
@@ -59,7 +43,7 @@ export class TalisPdfViewer {
   }
 
   getImageDimensions() {
-    const img = this.el.shadowRoot.querySelector('img');
+    const img = this.el.querySelector('img');
     const { offsetLeft: x, offsetTop: y, width, height } = img;
     return { x, y, width, height };
   }
@@ -92,7 +76,7 @@ export class TalisPdfViewer {
               const { top, left } = this.getLocationDetails(annotation);
               return (
                 <div class="pin-drop-holder" style={{ top, left }}>
-                  <div class="pin-drop"></div>
+                  <div class="pin-drop red"></div>
                 </div>
               );
             })}
@@ -101,11 +85,6 @@ export class TalisPdfViewer {
               <div class="pin-drop"></div>
             </div>
           )}
-        </div>
-        <div class="page-navigation">
-          <button onClick={() => this.prevPage()}>Previous</button>
-          <button class="page-location">Page {this.currentPage + 1}</button>
-          <button onClick={() => this.nextPage()}>Next</button>
         </div>
       </div>
     );
